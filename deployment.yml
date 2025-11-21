@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: mydeployment
+  namespace: vishnu
+spec:
+  replicas: 2
+  selector: 
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: cont-1
+          image: pavithramancha/clientapp:appimage
+          ports:
+            - containerPort: 80
+          imagePullSecrets:
+            - name: mysecret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "50Mi"
+            limits:
+              cpu: "200m"
+              memore: "100Mi"
+          
